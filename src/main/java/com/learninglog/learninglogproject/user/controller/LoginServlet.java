@@ -9,6 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 @WebServlet(name = "Login", value = "/login")
@@ -29,13 +31,16 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("pages/login.jsp").forward(req, resp);
         }
         try{
+            // call the user dao> login user method
             UserDaoInterface userDao = new UserDao();
             User userObj = userDao.loginUser(email, password);
             if(userObj == null){
                 req.setAttribute("error", "Invalid username or password");
                 req.getRequestDispatcher("pages/login").forward(req, resp);
             }else{
-
+                HttpSession session = req.getSession();
+                session.setAttribute("user", userObj);
+                resp.sendRedirect("dashboard");
             }
         } catch (Exception e) {
             req.setAttribute("error", e.getMessage());

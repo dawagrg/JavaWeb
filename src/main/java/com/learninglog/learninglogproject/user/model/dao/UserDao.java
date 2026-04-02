@@ -60,18 +60,25 @@ public class UserDao implements UserDaoInterface {
              PreparedStatement st = conn.prepareStatement(query)
         ) {
             st.setString(1, email);
+            // execute query
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 String storedHashedPassword = rs.getString("password");
+                // boolean isValidPw = BCrypt.checkpw(password, storedHashedPassword);
                 if (BCrypt.checkpw(password, storedHashedPassword)) {
                     int id = rs.getInt("id");
                     String name = rs.getString("name");
                     User userObj = new User(id, name, email, storedHashedPassword);
                     return userObj;
                 }
+                else{
+                    return null;
+                }
+            }
+            else {
+                return null;
             }
         }
-        return null;
     }
 }
 
