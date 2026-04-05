@@ -1,22 +1,22 @@
 package com.learninglog.learninglogproject.topic.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Topic {
     private int id;
     private  String name;
     private int userId;
-    private Timestamp createdDate;
-
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
     public Topic() {}
 
-    public Topic(int id, String name, int userId, Timestamp createdDate, Timestamp updatedDate) {
+    public Topic(int id, String name, int userId, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.name = name;
         this.userId = userId;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {
@@ -43,21 +43,19 @@ public class Topic {
         this.userId = userId;
     }
 
-    public Timestamp getCreatedDate() {
-        return createdDate;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedDate(Timestamp createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedDate() {
-        return updatedDate;
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdatedDate(Timestamp updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
-
-    private Timestamp updatedDate;
 }

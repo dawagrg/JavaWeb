@@ -1,5 +1,7 @@
 package com.learninglog.learninglogproject.topic.controller;
 
+import com.learninglog.learninglogproject.topic.model.Topic;
+import com.learninglog.learninglogproject.topic.model.dao.TopicDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 @WebServlet("/topic")
 public class TopicServlet extends HttpServlet {
@@ -22,6 +26,26 @@ public class TopicServlet extends HttpServlet {
         if(action == "add"){
             String topicName = req.getParameter("topic-name");
             int userId =Integer.parseInt(req.getParameter("userId"));
+            Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+            Timestamp updatedDate = createdAt;
+
+            Topic topicObj = new Topic();
+            topicObj.setName(topicName);
+            topicObj.setUserId(userId);
+            topicObj.setCreatedAt(createdAt);
+            topicObj.setUpdatedAt(updatedDate);
+
+            try{
+                boolean result = TopicDao.insertTopic(topicObj);
+                if(result){
+                    req.setAttribute("success", "Topic added successfully");
+                }else{
+                    req.setAttribute("error", "Something went wrong");
+                }
+                req.getRequestDispatcher("pages/add-topic.jsp").forward(req, resp);
+            } catch (SQLException e) {
+                req.setAttribute("error", "Something went wrong");
+            }
         }
     }
 }
