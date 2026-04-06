@@ -11,12 +11,22 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 @WebServlet("/topic")
 public class TopicServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doGet(req, resp);
+        String action = req.getParameter("action");
+        if(action.equals("list")){
+            try {
+                List<Topic> topicList = TopicDao.fetchTopics();
+                req.setAttribute("topics", topicList);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            req.getRequestDispatcher("pages/topic-list.jsp").forward(req, resp);
+        }
         req.getRequestDispatcher("pages/add-topic.jsp").forward(req, resp);
     }
 
