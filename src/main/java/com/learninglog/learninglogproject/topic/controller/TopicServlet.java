@@ -18,12 +18,13 @@ public class TopicServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        if(action.equals("list")){
+
+        if("List".equals(action)){
             try {
                 List<Topic> topicList = TopicDao.fetchTopics();
                 req.setAttribute("topics", topicList);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                req.setAttribute("topics", "Unable to fetch");
             }
             req.getRequestDispatcher("pages/topic-list.jsp").forward(req, resp);
         }
