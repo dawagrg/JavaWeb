@@ -16,13 +16,13 @@ Topic List
         <th>Action</th>
     </tr>
     <tbody>
-    <c:forEach var="t" items="${topics}">
+    <c:forEach var="obj" items="${topics}">
         <tr>
 
-            <td>${t.getId()}</td>
-            <td>${t.getName()}</td>
-            <td>${t.getUserId()}</td>
-            <td>${t.getCreatedAt()}</td>
+            <td>${obj.getId()}</td>
+            <td>${obj.getname()}</td>
+            <td>${obj.getUserId()}</td>
+            <td>${obj.getCreatedAt()}</td>
             <td>
                 <a href="topic?action=edit&id=${t.getId()}">Edit</a> |
                 <a href="topic?action=delete&id=${t.getId()}">Delete</a>
