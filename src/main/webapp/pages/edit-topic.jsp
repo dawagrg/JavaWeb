@@ -1,16 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 4/16/2026
-  Time: 10:41 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<jsp:include page = "/components/header.jsp" />
 
-</body>
-</html>
+<h2>
+    Edit Topic
+</h2>
+    <form method = "post" action="topic">
+        <input type="number" value="" name="id" readonly>
+        <input type="text" value="" name="name">
+        <button>Edit</button>
+    </form>
+
+<jsp:include page = "/components/footer.jsp" />
