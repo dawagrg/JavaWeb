@@ -22,7 +22,7 @@
     <label>Enter the topic name</label><br>
     <input type="text" name="topic-name">
     <label>User Id</label>
-    <input type="text" value="<%=userId%>" name="userid" disabled>
+    <input type="text" value="<%=userId%>" name="userid" >
     <button>Submit</button>
 
 </form>

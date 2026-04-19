@@ -4,8 +4,13 @@
     Edit Topic
 </h2>
     <form method = "post" action="topic">
-        <input type="number" value="" name="id" readonly>
-        <input type="text" value="" name="name">
+        <input type ="text" value="edit" name="action">
+
+        <label>Id</label>
+        <input type="number" value=${topic.id} name="id" readonly><br>
+
+        <label>Name</label>
+        <input type="text" value=${topic.name} name="name">
         <button>Edit</button>
     </form>
 

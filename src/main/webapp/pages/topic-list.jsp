@@ -24,8 +24,8 @@ Topic List
             <td>${obj.getUserId()}</td>
             <td>${obj.getCreatedAt()}</td>
             <td>
-                <a href="topic?action=edit&id=${t.getId()}">Edit</a> |
-                <a href="topic?action=delete&id=${t.getId()}">Delete</a>
+                <a href="topic?action=edit&id=${obj.getId()}">Edit</a> |
+                <a href="topic?action=delete&id=${obj.getId()}">Delete</a>
             </td>
         </tr>
     </c:forEach>

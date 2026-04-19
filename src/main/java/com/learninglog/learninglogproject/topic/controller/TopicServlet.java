@@ -49,7 +49,7 @@ public class TopicServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse rest){
+    protected void doPost(HttpServletRequest req, HttpServletResponse rest) throws ServletException, IOException{
         String  action = req.getParameter("action");
 
         if(action=="add"){
@@ -77,9 +77,23 @@ public class TopicServlet extends HttpServlet {
             catch (Exception e){
 
             }
-            // Call the topic dao
+        }
 
-
+        if ("edit".equals(action)){
+            int id = Integer.parseInt(req.getParameter("id"));
+            String name = req.getParameter("name");
+            try{
+                TopicDao dao = new TopicDao();
+                boolean result = dao.updateTopic(id, name);
+                if (result){
+                    rest.sendRedirect("/topic?action=list");
+                }else{
+                    req.setAttribute("error", "Something went wrong");
+                }
+            }catch (Exception e){
+                req.setAttribute("error", e.getMessage());
+            }
+            req.getRequestDispatcher("pages/edit-topic.jsp").forward(req, rest);
         }
     }
 }
