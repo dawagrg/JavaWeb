@@ -18,8 +18,10 @@ public class AuthFilter implements Filter {
         // "Give me the existing session if it already exists, otherwise return null."
         HttpSession session = req.getSession(false);
         boolean loggedIn = (session != null && session.getAttribute("user") != null);
+        // true
 
         boolean isAuthPage = uri.contains("login") || uri.contains("register");
+        // false
 
         if (loggedIn || isAuthPage){
             chain.doFilter(request, response);
