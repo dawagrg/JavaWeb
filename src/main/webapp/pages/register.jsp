@@ -57,6 +57,6 @@ Register Page
     <button type="submit">Submit</button>
 
 </form>
-
+<a href="login">Already have an account? Login</a>
 </body>
 </html>

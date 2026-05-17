@@ -79,6 +79,7 @@ public class TopicDao {
         }
     }
 
+    // Update topic method
     public boolean updateTopic(int id, String  name) throws SQLException{
         String query = "UPDATE TOPIC SET name = ? WHERE id = ?";
         try(Connection conn = DBConnection.getConnection();
